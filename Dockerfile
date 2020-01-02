@@ -1,7 +1,7 @@
 # Dockerfile
 
 # Pull base image
-FROM python:3.8.0-alpine3.10
+FROM python:3.8.1-alpine3.11
 LABEL maintainer="Bartosz Ligęza"
 
 # Set environment variables
