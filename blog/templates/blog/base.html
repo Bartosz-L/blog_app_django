@@ -9,14 +9,15 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-<div id="content">
-    {% block content %}
-    {% endblock content %}
-</div>
-<div id="sidebar">
-    <h2>My Blog</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-</div>
-
+<main class="main-container">
+    <section id="content">
+        {% block content %}
+        {% endblock content %}
+    </section>
+    <aside id="sidebar">
+        <h2>My Blog</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+    </aside>
+</main>
 </body>
 </html>
