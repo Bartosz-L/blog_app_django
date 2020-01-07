@@ -7,4 +7,7 @@
         Posted: {{ post.publish }} By: {{ post.author }}
     </p>
     {{ post.body|linebreaks }}
+    <p>
+        <a href="{% url "blog:post_share" post.id %}">Share Post</a>
+    </p>
 {% endblock %}
