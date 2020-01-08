@@ -5,16 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="{% static 'libs/uikit-3.2.6/css/uikit.min.css' %}"/>
+
+    <!-- UIkit JS -->
+    <script src="{% static 'libs/uikit-3.2.6/js/uikit.min.js' %}"></script>
+    <script src="{% static 'libs/uikit-3.2.6/js/uikit-icons.min.js' %}"></script>
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-<main class="main-container">
-    <section id="content">
+
+<main class="uk-flex">
+    <section class="uk-card uk-card-default uk-card-body">
         {% block content %}
         {% endblock content %}
     </section>
-    <aside id="sidebar">
+    <aside class="uk-card uk-card-default uk-card-body uk-background-muted uk-padding uk-panel">
         <h2>My Blog</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
     </aside>

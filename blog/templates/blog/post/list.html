@@ -2,22 +2,36 @@
 {% block title %}My Blog{% endblock %}
 
 {% block content %}
-    <h1>my blog</h1>
+    <h1 class="uk-heading-divider">My Blog</h1>
+
     {% if tag %}
         <h3>Posts filtered by Tag "{{ tag.name }}"</h3>
     {% endif %}
     {% for post in posts %}
-        <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
-        <p class="tags">Tags:
-            {% for tag in post.tags.all %}
-                <a href="{% url "blog:post_list_by_tag" tag.slug %}">{{ tag.name }}</a>
-                {% if not forloop.last %},
-                {% endif %}
-            {% endfor %}
 
-        </p>
-        <p class="date">Posted: {{ post.publish }} By: {{ post.author }}</p>
-        {{ post.body|truncatewords:30|linebreaks }}
+        <div class="uk-card uk-card-hover uk-card-body">
+            <div class="uk-article">
+                <h2 class="uk-article-title uk-text-success">
+                    <a class="uk-button-text uk-link-heading"
+                       href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                </h2>
+                <p class="uk-article-meta">
+                    {% for tag in post.tags.all %}
+                        <a class="uk-button uk-button-text"
+                           href="{% url "blog:post_list_by_tag" tag.slug %}">{{ tag.name }}</a>
+                        {% if not forloop.last %}&#8226
+                        {% endif %}
+                    {% endfor %}
+                </p>
+
+                <p class="uk-text-meta">Posted: {{ post.publish }} By: {{ post.author }}</p>
+                <p class="uk-text-lead">{{ post.body|truncatewords:30|linebreaks }}</p>
+            </div>
+
+
+        </div>
+
+
     {% endfor %}
     {% include "blog/post/pagination.html" with page=posts %}
 {% endblock %}
