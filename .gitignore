@@ -220,4 +220,6 @@ fabric.properties
 # Ignore all local history of files
 .history
 
+# temporary folders
+tmp
 # End of https://www.gitignore.io/api/django,pycharm,visualstudiocode
