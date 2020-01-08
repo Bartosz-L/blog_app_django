@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.views.generic import ListView
+from django.db.models import Count
+# from django.views.generic import ListView
 from django.core.mail import send_mail
-from .models import Post, Comment
+from .models import Post
 from .forms import EmailPostForm, CommentForm
 from taggit.models import Tag
 
@@ -28,7 +29,6 @@ def post_list(request, tag_slug=None):
     return render(request, 'blog/post/list.html', context=context)
 
 
-# Create your views here.
 # class PostListView(ListView):
 #     queryset = Post.objects.all()
 #     context_object_name = 'posts'
@@ -41,6 +41,11 @@ def post_detail(request, year, month, day, post):
                              publish__day=day)
     comments = post.comments.filter(active=True)
 
+    # similar posts list
+    post_tags_ids = post.tags.values_list('id', flat=True)
+    similar_posts = Post.published.filter(tags__in=post_tags_ids).exclude(id=post.id)
+    similar_posts = similar_posts.annotate(same_tags=Count('tags')).order_by('-same_tags', '-publish')[:4]
+
     if request.method == 'POST':
         comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
@@ -50,7 +55,7 @@ def post_detail(request, year, month, day, post):
     else:
         comment_form = CommentForm()
 
-    context = {'post': post, 'comments': comments, 'comment_form': comment_form}
+    context = {'post': post, 'comments': comments, 'similar_posts': similar_posts, 'comment_form': comment_form}
     return render(request, 'blog/post/detail.html', context=context)
 
 
