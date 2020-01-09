@@ -16,11 +16,11 @@
 </head>
 <body>
 
-<main class="uk-flex">
-    <section class="uk-card uk-card-default uk-card-body">
+<section class="uk-flex">
+    <main class="uk-card uk-card-default uk-card-body">
         {% block content %}
         {% endblock content %}
-    </section>
+    </main>
     <aside class="uk-card uk-card-default uk-card-body uk-background-muted uk-padding uk-panel">
         <h2 class="uk-tile uk-padding-remove">Welcome to my blog.</h2>
         <p>Total articles posted: {% total_posts %}</p>
@@ -39,7 +39,13 @@
                 </li>
             {% endfor %}
         </ul>
+        <div class="uk-margin-top">
+            <a class="uk-link-heading" href="{% url 'blog:post_feed' %}">
+                <span class="uk-margin-small-right" uk-icon="icon: rss"></span>
+                Subscribe to RSS Feed
+            </a>
+        </div>
     </aside>
-</main>
+</section>
 </body>
 </html>
