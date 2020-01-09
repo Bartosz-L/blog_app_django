@@ -1,0 +1,12 @@
+<ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
+    <li class="uk-nav-header">Latest</li>
+
+    {% for post in latest_posts %}
+        <li>
+            <a href="{{ post.get_absolute_url }}">
+                    <span class="uk-margin-small-right"
+                          uk-icon="icon: link"></span> {{ post.title }}
+            </a>
+        </li>
+    {% endfor %}
+</ul>
