@@ -16,12 +16,12 @@
 </head>
 <body>
 
-<section class="uk-flex">
-    <main class="uk-card uk-card-default uk-card-body">
+<section class="uk-flex" uk-height-viewport="expand: true">
+    <main class="uk-card uk-card-default uk-card-body uk-width-1-1">
         {% block content %}
         {% endblock content %}
     </main>
-    <aside class="uk-card uk-card-default uk-card-body uk-background-muted uk-padding uk-panel">
+    <aside class="uk-card uk-card-default uk-card-body uk-background-muted uk-padding uk-panel uk-width-1-4">
         <h2 class="uk-tile uk-padding-remove">Welcome to my blog.</h2>
         <p>Total articles posted: {% total_posts %}</p>
         {% show_latest_posts 3 %}

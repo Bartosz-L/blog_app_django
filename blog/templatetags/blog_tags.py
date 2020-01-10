@@ -1,8 +1,8 @@
 from django import template
-from django.utils.safestring import mark_safe
-import markdown
 from django.db.models import Count
 from ..models import Post
+from django.utils.safestring import mark_safe
+import markdown
 
 register = template.Library()
 

@@ -1,0 +1,31 @@
+{% extends "blog/base.html" %}
+{% block title %}Search{% endblock %}
+
+{% block content %}
+    <div class="uk-container">
+        {% if query %}
+            <h1 class="uk-heading-divider">Posts containing query "{{ query }}"</h1>
+            <h3 class="uk-text-normal">
+                {% with results.count as total_results %}
+                    Found {{ total_results }} result{{ total_results|pluralize }}
+                {% endwith %}
+            </h3>
+            {% for post in results %}
+                <h4 class="uk-text-normal"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h4>
+                {{ post.body|truncatewords:5 }}
+            {% empty %}
+                <p>No results for provided query.</p>
+            {% endfor %}
+            <p><a href="{% url "blog:post_search" %}">Search again</a></p>
+        {% else %}
+            <h1 class="uk-heading-divider">Search for posts</h1>
+            <form action="." method="get">
+                <fieldset class="uk-fieldset">
+                    {{ form.as_p }}
+                    <button type="submit" class="uk-button uk-button-primary">Search</button>
+                </fieldset>
+            </form>
+        {% endif %}
+    </div>
+
+{% endblock %}

@@ -18,3 +18,8 @@ class CommentForm(forms.ModelForm):
                    'body': forms.Textarea(
                        attrs={'class': 'uk-textarea uk-form-width-large', 'style': 'resize: vertical'})
                    }
+
+
+class SearchForm(forms.Form):
+    query = forms.CharField(widget=forms.TextInput(attrs={'class': 'uk-input uk-form-width-large'}),
+                            label="Search Query")
