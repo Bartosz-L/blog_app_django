@@ -1,6 +1,6 @@
 
 **1. Docker** ([https://www.docker.com/] )  
-Install Docker locally. Tested on: Docker Desktop community, Version 2.1.7.0 (41536), Channel edge
+Install Docker locally. Tested on: Docker version 19.03.5, build 633a0ea
 
 **2. Build from docker image**  
 `docker-compose build`
